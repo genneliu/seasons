@@ -19,7 +19,7 @@ class App extends React.Component {
         super(props)
         //this object is for initializing state
         //null becaue we dont now what the lat is right now
-        this.state = { lat: null };
+        this.state = { lat: null, errorMessage:'' };
 
         window.navigator.geolocation.getCurrentPosition(
             //first callback when location successful
@@ -27,8 +27,10 @@ class App extends React.Component {
                     //called setState to update state
                     this.setState({ lat: position.coords.latitude });
                 },
-            //failure callbac
-                err => console.log(err)
+            //failure callback
+                err => {
+                    this.setState({ errorMessage: err.message });
+                }
         );
     }
 
