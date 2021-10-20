@@ -20,18 +20,22 @@ class App extends React.Component {
         //this object is for initializing state
         //null becaue we dont now what the lat is right now
         this.state = { lat: null };
+
+        window.navigator.geolocation.getCurrentPosition(
+            //first callback when location successful
+                position => {
+                    //called setState to update state
+                    this.setState({ lat: position.coords.latitude });
+                },
+            //failure callbac
+                err => console.log(err)
+        );
     }
 
     //react requires to define render
+    //never get request in render because it gets called all the time
     render() {
-        window.navigator.geolocation.getCurrentPosition(
-    //first callback when location successful
-        position => console.log(position),
-    //failure callbac
-        err => console.log(err)
-        );
-
-    return <div> Latitude: </div>;
+    return <div> Latitude: {this.state.lat}</div>;
     }
 }
 
