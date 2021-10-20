@@ -34,6 +34,14 @@ class App extends React.Component {
         );
     }
 
+    componentDidMount() {
+        console.log("My compionent was rendered")
+    };
+
+    componentDidUpdate(){
+        console.log("Component did update")
+    };
+
     //react requires to define render
     //never get request in render because it gets called all the time
     render() {
