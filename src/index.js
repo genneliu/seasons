@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import SeasonDisplay from './SeasonDisplay';
 import Spinner from './Spinner'
+import Clock from './Clock'
 
 /*functional component
 const App = () => {
@@ -65,6 +66,7 @@ class App extends React.Component {
     render() {
            return (
                <div className="border red">
+                   <Clock />
                    {this.renderContent()}
                </div>
            )
