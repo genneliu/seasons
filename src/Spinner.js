@@ -5,9 +5,14 @@ const Spinner = (props) => {
         <div className = "ui active dimmer">
             <div className = "ui big text loader">
                 {props.message}
-            </div>
+            </div> 
         </div>
     );
+};
+
+//alternate value for prop
+Spinner.defaultProps = {
+    message: 'Loading...'
 };
 
 export default Spinner

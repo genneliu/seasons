@@ -46,19 +46,32 @@ class App extends React.Component {
         console.log("Component did update")
     };
 
+    //helper function helps contain all code in render method
+    //conditional logic in helper method
+    renderContent() {
+        if (this.state.errorMessage && !this.state.lat) {
+            return <div> Error: {this.state.errorMessage} </div>
+        }
+        if (this.state.lat && !this.state.errorMessage) {
+            return <SeasonDisplay lat={this.state.lat}/>
+        } 
+        return <div> <Spinner message="Please Accept Location Request"/> </div>
+        
+    }
+    
+
     //react requires to define render
     //never get request in render because it gets called all the time
     render() {
-            if (this.state.errorMessage && !this.state.lat) {
-                return <div> Error: {this.state.errorMessage} </div>
-            }
-            if (this.state.lat && !this.state.errorMessage) {
-                return <SeasonDisplay lat={this.state.lat}/>
-            } 
-            return <div> <Spinner message="Please Accept Location Request"/> </div>
-            
+           return (
+               <div className="border red">
+                   {this.renderContent()}
+               </div>
+           )
     }
 }
+
+
 
 ReactDOM.render(<App/>, document.querySelector('#root'));
 
