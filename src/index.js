@@ -13,29 +13,31 @@ const App = () => {
 //subclassing react.component
 
 class App extends React.Component {
-    //not required by react, helpful to initialize state
+    state = { lat: null, errMessage: ''};
+    
+    /*not required by react, helpful to initialize state
     constructor(props){
         //React.component has own constructor, so super 
         super(props)
+        */
         //this object is for initializing state
         //null becaue we dont now what the lat is right now
-        this.state = { lat: null, errorMessage:'' };
+        // this.state = { lat: null, errorMessage:'' };
 
-        window.navigator.geolocation.getCurrentPosition(
-            //first callback when location successful
-                position => {
-                    //called setState to update state
-                    this.setState({ lat: position.coords.latitude });
-                },
-            //failure callback
-                err => {
-                    this.setState({ errorMessage: err.message });
-                }
-        );
-    }
+    
+
+
+
+//best practice to load data in didmount method
 
     componentDidMount() {
-        console.log("My compionent was rendered")
+        window.navigator.geolocation.getCurrentPosition(
+            //first callback when location successful
+                position => this.setState({ lat: position.coords.latitude }),
+                    //called setState to update state
+            //failure callback
+                err => this.setState({ errorMessage: err.message }),
+        );
     };
 
     componentDidUpdate(){
